@@ -1,12 +1,8 @@
 import Cabecalho from "./components/Cabecalho"
 import Rodape from "./components/Rodape"
-import Section from "./components/Section"
-import logoReact from "./assets/react.svg"
 import { Outlet } from "react-router-dom";
 
 export default function App(){
-  let novoConteudo = "Nova notícia!";
-  let altLogo = "Logomarca da Tecnologia React"
 
   return(
     <>
