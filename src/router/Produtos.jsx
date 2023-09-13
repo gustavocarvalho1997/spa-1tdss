@@ -1,6 +1,6 @@
 import { ListaProdutos } from "../components/ListaProdutos"
 import { Link } from "react-router-dom"
-import "./Produtos.css"
+import styles from "./Produtos.module.css"
 import { AiFillEdit as Editar} from "react-icons/ai"
 import { AiFillDelete as Excluir} from "react-icons/ai"
 
@@ -18,13 +18,13 @@ export default function Produtos() {
     <div>
       <h1>Produtos</h1>
       
-      <table>
+      <table className={styles.table}>
         <thead>
           <tr>
-            <th>Id</th>
-            <th>Nome</th>
-            <th>Preço</th>
-            <th>Editar</th>
+            <th className={styles.tableHeader}>Id</th>
+            <th className={styles.tableHeader}>Nome</th>
+            <th className={styles.tableHeader}>Preço</th>
+            <th className={styles.tableHeader}>Editar</th>
           </tr>
         </thead>
         <tbody>

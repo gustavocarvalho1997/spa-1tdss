@@ -7,18 +7,19 @@ export default function EditarProdutos() {
 
   // O HOOK useParams()
   const {id} = useParams();
-  const produtoRecuperadoById = ListaProdutos.filter((produto) =>{
-    if(produto.id == parseInt(id)){
-      return produto
-    }
-});
+//   const produtoRecuperadoById = ListaProdutos.filter((produto) =>{
+//     if(produto.id == parseInt(id)){
+//       return produto
+//     }
+// });
+const produtoRecuperadoById = ListaProdutos.filter(item => item.id == id)[0];
 
 
   return (
     <>
       <h1>Editar Produtos</h1>
       <p>Produto selecionado: {id}</p>
-      <p>Produto selecionado: {produtoRecuperadoById[0].nome}</p>
+      <p>Produto selecionado: {produtoRecuperadoById.nome}</p>
     </>
   )
 }
