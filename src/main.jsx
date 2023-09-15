@@ -9,6 +9,7 @@ import Produtos from './router/Produtos.jsx';
 import EditarProdutos from './router/EditarProdutos.jsx';
 import Erro404 from './router/Erro404.jsx';
 import ExcluirProdutos from './router/ExcluirProdutos.jsx';
+import AdicionarProdutos from './router/AdicionarProdutos.jsx';
 
 //Criando o objeto de rotas
 const router = createBrowserRouter([
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       { path: '/produtos', element: <Produtos /> },
       { path: '/editar/produtos/:id', element: <EditarProdutos /> },
       { path: '/excluir/produtos/:id', element: <ExcluirProdutos /> },
+      { path: '/adicionar/produtos', element: <AdicionarProdutos /> },
     ]
   },
 ])
