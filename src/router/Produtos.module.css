@@ -9,7 +9,7 @@
         text-align: center;
     }
 
-    &td{
+   td{
         border: 2px solid #ccc;
         text-align: left;
 
@@ -27,9 +27,13 @@
         }
 
         &:hover{
-            background-color: #3a2f2f;
-            color: #fff
+            background-color: #444949;
+            color: #fff;
         }
+
     }
+
 }
-  
+
+
+ 
