@@ -9,7 +9,7 @@
         text-align: center;
     }
 
-   td{
+    .tableData{
         border: 2px solid #ccc;
         text-align: left;
 
@@ -21,7 +21,7 @@
         }
     }
 
-    tr{
+    .tableRow{
         &:nth-child(even){
             background-color: #f0f0f0;
         }
