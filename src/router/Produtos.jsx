@@ -3,6 +3,7 @@ import { ListaProdutos } from "../Components/ListaProdutos"
 import  styles from "./Produtos.module.css";
 import {AiFillEdit as Editar} from "react-icons/ai";
 import {MdDeleteForever as Excluir} from "react-icons/md";
+import { BiMessageAltAdd as Adicionar } from "react-icons/bi"
 
 export default function Produtos() {
 
@@ -24,17 +25,17 @@ export default function Produtos() {
             </thead>
             <tbody>
             {ListaProdutos.map((produto,indice)=>(
-                 <tr key={indice}>
-                    <td>{produto.id}</td>
-                    <td>{produto.nome}</td>
-                    <td>{produto.preco}</td>
-                    <td><Link to={`/editar/produtos/${produto.id}`}> <Editar/> </Link> | <Link to={`/excluir/produtos/${produto.id}`}> <Excluir/> </Link></td>
+                 <tr key={indice} className={styles.tableRow}>
+                    <td className={styles.tableData}>{produto.id}</td>
+                    <td className={styles.tableData}>{produto.nome}</td>
+                    <td className={styles.tableData}>{produto.preco}</td>
+                    <td className={styles.tableData}><Link to={`/editar/produtos/${produto.id}`}> <Editar/> </Link> | <Link to={`/excluir/produtos/${produto.id}`}> <Excluir/> </Link></td>
                  </tr>
             ))}
         </tbody>
         <tfoot>
-        <tr>
-           <td colSpan={4} style={{textAlign:"center"}}>PRODUTOS</td>
+        <tr className={styles.tableRow}>
+           <td className={styles.tableData} colSpan={4} style={{textAlign:"center"}}>PRODUTOS - INSERIR <Link to= {`/adicionar/produtos`}><Adicionar/></Link></td>
         </tr>
         </tfoot>
         </table>
