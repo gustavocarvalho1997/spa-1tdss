@@ -7,6 +7,16 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
+## Grupo do Challenge
+
+Nome: Gustavo Carvalho Noia RM: 552466
+
+Nome: Vitor Teixeira Silva RM: 552228
+
+Nome: Ronald de Oliveira Farias RM: 552364
+
+Nome: Nicoly Oliveira Santos RM: 552410
+
 
 ## Construção de Rotas com [react-router-dom]
 
