@@ -4,6 +4,8 @@ import {AiFillEdit as Editar} from "react-icons/ai";
 import {MdDeleteForever as Excluir} from "react-icons/md";
 import { BiMessageAltAdd as Adicionar } from "react-icons/bi"
 import { useEffect, useState } from "react";
+import ModalInserir from "../components/ModalInserir/ModalInserir";
+
 
 export default function Produtos() {
 
@@ -36,12 +38,13 @@ export default function Produtos() {
     })
   },[counter2]);
 
+  const [open, setOpen] = useState(false);
 
-
-  return (
+falseu;rn (
     <div>
         <h1>Produtos</h1>
-
+        {open ? <ModalInserir open={open} setOpen={setOpen}/> : ""}
+        <button onClick={() => setOpen(true)}>OPEN - MODAL</button>
         <div>
           <button onClick={() => setCounter(counter + 1)}>COUNTER - {counter}</button>
         </div>
