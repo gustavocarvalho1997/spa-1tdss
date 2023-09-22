@@ -24,13 +24,18 @@ export default function Produtos() {
 
   useEffect(() => {
     console.log("useEffect será renderizado apenas se um objeto/variável/constante que estiver no array de dependências sofre uma atualização!");
-    fetch("http://localhost:5000/produtos")
-    .then((lista) => lista.json())
-    .then((listProdutos) => {
-      setProdutos(listProdutos)
+    fetch("http://localhost:5000/produtos",{
+      method: "GET",
+      headers:{
+        "Content-Type": "application/json"
+      }
+    })
+      .then((response) => response.json())
+      .then((listaProdutos) => {
+        setProdutos(listaProdutos)
     })
   },[counter2]);
-  
+
 
 
   return (
