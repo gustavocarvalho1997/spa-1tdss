@@ -11,46 +11,30 @@ export default function Produtos() {
 
   document.title = "Lista de Produtos";
 
-  const [counter, setCounter] = useState(0);
-
-  const [counter2, setCounter2] = useState(0)
+  const [produtos, setProdutos] = useState([{}]);
 
   useEffect(() => {
-    console.log("useEffect será renderizado sempre que o componente ou qualquer objeto for atualizado!");
-  });
-  useEffect(() => {
-    console.log("useEffect será renderizado apenas uma vez!");
-  },[]);
-
-  const [produtos, setProdutos] = useState([{}])
-
-  useEffect(() => {
-    console.log("useEffect será renderizado apenas se um objeto/variável/constante que estiver no array de dependências sofre uma atualização!");
+    console.log("useEffect será rendereizado apenas uma vez!");
     fetch("http://localhost:5000/produtos",{
       method: "GET",
       headers:{
         "Content-Type": "application/json"
       }
-    })
-      .then((response) => response.json())
-      .then((listaProdutos) => {
-        setProdutos(listaProdutos)
-    })
-  },[counter2]);
+      })
+      .then((response)=> response.json())
+      .then((listaProdutos)=>{
+          setProdutos(listaProdutos);
+      })
+  
+  },[]);
 
   const [open, setOpen] = useState(false);
 
 falseu;rn (
     <div>
         <h1>Produtos</h1>
-        {open ? <ModalInserir open={open} setOpen={setOpen}/> : ""}
-        <button onClick={() => setOpen(true)}>OPEN - MODAL</button>
-        <div>
-          <button onClick={() => setCounter(counter + 1)}>COUNTER - {counter}</button>
-        </div>
-        <div>
-          <button onClick={() => setCounter2(counter2 + 1)}>COUNTER2 - {counter2}</button>
-        </div>
+        {open ? <ModalInserir open={open} setOpen={setOpen} /> : "" }
+        <button onClick={()=> setOpen(true)}>OPEN - MODAL</button>
 
         <table className={styles.table}>
             <thead>
