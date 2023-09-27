@@ -9,7 +9,7 @@ import Erro404 from './router/Erro404.jsx';
 import Home from './router/Home.jsx';
 import Produtos from './router/Produtos.jsx';
 import ExcluirProdutos from './router/ExcluirProdutos.jsx';
-import Adicionar from './router/AdicionarProdutos.jsx';
+import Adicionar from './router/AdicionarProdutos.jsx'
 
 //Criando o objeto de rotas
 const router = createBrowserRouter([
