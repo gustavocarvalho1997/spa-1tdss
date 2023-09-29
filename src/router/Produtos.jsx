@@ -4,15 +4,17 @@ import {AiFillEdit as Editar} from "react-icons/ai";
 import {MdDeleteForever as Excluir} from "react-icons/md";
 import { BiMessageAltAdd as Adicionar } from "react-icons/bi"
 import { useEffect, useState } from "react";
+import ModalInserir from "../components/ModalInserir/ModalInserir";
 
 export default function Produtos() {
 
   document.title = "Lista de Produtos";
 
   const [produtos, setProdutos] = useState([{}]);
-
+  const [open, setOpen] = useState(false);
   useEffect(() => {
-    console.log("useEffect será rendereizado apenas uma vez!");
+    if(!open){
+      console.log("useEffect será rendereizado apenas uma vez!");
     fetch("http://localhost:5000/produtos",{
       method: "GET",
       headers:{
@@ -23,10 +25,10 @@ export default function Produtos() {
       .then((listaProdutos)=>{
           setProdutos(listaProdutos);
       })
-  
-  },[]);
+    }
+  },[open]);
 
-  const [open, setOpen] = useState(false);
+  
 
 
   return (
@@ -34,7 +36,7 @@ export default function Produtos() {
         <h1>Produtos</h1>
 
         {open ? <ModalInserir open={open} setOpen={setOpen} /> : "" }
-        <button onClick={()=> setOpen(true)}>OPEN - MODAL</button>
+        <Link onClick={()=> setOpen(true)}>Add - Produto</Link>
 
         <table className={styles.table}>
             <thead>
