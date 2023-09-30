@@ -68,10 +68,11 @@ export default function ModalInserir(props) {
         
 
         <div>
-        <button className="btnClose" onClick={()=> props.setOpen(false)}> X </button>
+        
             <form onSubmit={handleSubmit}>
     
                 <fieldset>
+                    <span className="btnClose" onClick={()=> props.setOpen(false)}> X </span>
                     <legend>Novo Produto</legend>
                     <div>
                         <label htmlFor="">Nome:</label>
