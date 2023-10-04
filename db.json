@@ -2,23 +2,13 @@
   "produtos": [
     {
       "id": 1,
-      "nome": "Teclado",
+      "nome": "Teclado Mecânico",
       "preco": 150
     },
     {
       "id": 2,
       "nome": "Mouse",
       "preco": 50
-    },
-    {
-      "id": 3,
-      "nome": "Monitor",
-      "preco": 350
-    },
-    {
-      "nome": "Monitor 17'",
-      "preco": "800",
-      "id": 4
     },
     {
       "nome": "Cubo mágico",

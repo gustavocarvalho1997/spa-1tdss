@@ -1,21 +1,25 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import  styles from "./Produtos.module.css";
 import {AiFillEdit as Editar} from "react-icons/ai";
 import {MdDeleteForever as Excluir} from "react-icons/md";
 import { BiMessageAltAdd as Adicionar } from "react-icons/bi"
 import { useEffect, useState } from "react";
-import ModalInserir from "../components/ModalInserir/ModalInserir";
+import ModalAction from "../components/ModalAction/ModalAction";
 
 export default function Produtos() {
+  //use navigate
+  const navigate = useNavigate;
 
   document.title = "Lista de Produtos";
 
   const [produtos, setProdutos] = useState([{}]);
   const [open, setOpen] = useState(false);
+  const [id, setId] = useState(0);
+
   useEffect(() => {
     if(!open){
       console.log("useEffect será rendereizado apenas uma vez!");
-    fetch("http://localhost:5000/produtos",{
+      fetch("http://localhost:5000/produtos",{
       method: "GET",
       headers:{
         "Content-Type": "application/json"
@@ -25,17 +29,36 @@ export default function Produtos() {
       .then((listaProdutos)=>{
           setProdutos(listaProdutos);
       })
+      setId(0)
     }
+    
   },[open]);
 
-  
+  const handleUpdate = (id) => {
+    setId(id);
+    setOpen(true);
+  }
+
+  //delete
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/produtos/${id}`,{
+      method: "DELETE",
+      headers:{
+        "Content-Type": "application/json"
+      }
+      })
+      .then((response) => console.log(response))
+      .catch(error => console.log(error))
+
+      navigate("/produtos");
+  }
 
 
   return (
     <div>
         <h1>Produtos</h1>
 
-        {open ? <ModalInserir open={open} setOpen={setOpen} /> : "" }
+        {open ? <ModalAction open={open} setOpen={setOpen} idEditar={id} setId={setId} /> : "" }
         <Link onClick={()=> setOpen(true)}>Add - Produto</Link>
 
         <table className={styles.table}>
@@ -53,7 +76,7 @@ export default function Produtos() {
                     <td className={styles.tableData}>{produto.id}</td>
                     <td className={styles.tableData}>{produto.nome}</td>
                     <td className={styles.tableData}>{produto.preco}</td>
-                    <td className={styles.tableData}><Link to={`/editar/produtos/${produto.id}`}> <Editar/> </Link> | <Link to={`/excluir/produtos/${produto.id}`}> <Excluir/> </Link></td>
+                    <td className={styles.tableData}><Link onClick={() => handleUpdate(produto.id)}> <Editar/> </Link> | <Link onClick={() => handleDelete(produto.id)}> <Excluir/> </Link></td>
                  </tr>
             ))}
         </tbody>

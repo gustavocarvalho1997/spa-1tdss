@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
-import "./ModalInserir.scss";
+import "./ModalAction.scss";
 
-export default function ModalInserir(props) {
+export default function ModalAction(props) {
   document.title = "CADASTRAR";
   //Criar o bloco de geração de id do produto:
   let novoId;
+  const [produto, setProduto] = useState({
+    id:novoId,
+    nome:"",
+    preco:""
+  })
+  
+  
   useEffect(() => {
-    fetch("http://localhost:5000/produtos",{
+    fetch(`http://localhost:5000/produtos/${props.idEditar > 0 ? props.idEditar : ""}`,{
       method: "GET",
       headers: {
         "Content-Type": "application/json"
@@ -17,17 +24,19 @@ export default function ModalInserir(props) {
       return resp.json()
     })
     .then((resp) => {
-      novoId = (resp[resp.length-1].id + 1);
-      console.log("NOVO ID: " + novoId);
-      return novoId;
+      if(props.idEditar > 0){
+        setProduto(resp)
+      } else {
+        novoId = (resp[resp.length-1].id + 1);
+        console.log("NOVO ID: " + novoId);
+        return novoId;
+      }
+      
+
     })
   },[])
 
-  const [produto, setProduto] = useState({
-    id:novoId,
-    nome:"",
-    preco:""
-  })
+  
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -45,8 +54,8 @@ export default function ModalInserir(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(produto);
-    fetch("http://localhost:5000/produtos",{
-      method: "POST",
+    fetch(`http://localhost:5000/produtos/${props.idEditar > 0 ? props.idEditar : ""}`,{
+      method: (props.idEditar > 0 ? "PUT" : "POST"),
       headers: {
         "Content-Type": "application/json"
       },
@@ -57,6 +66,8 @@ export default function ModalInserir(props) {
       console.log(resp.json())
     })
     .catch((error) => console.log(error))
+    //Zerando o Id
+    props.setId(0);
     //Fechando o modal
     props.setOpen(false);
   };
@@ -64,7 +75,7 @@ export default function ModalInserir(props) {
   if (props.open) {
     return (
       <div className="container">
-        <h1>Cadastro de Produtos</h1>
+        <h1>{props.idEditar > 0 ? "Editar Produtos" : "Cadastro de Produtos"}</h1>
         
 
         <div>
@@ -83,7 +94,7 @@ export default function ModalInserir(props) {
                         <input type="number" name="preco" value={produto.preco} onChange={handleChange} placeholder="Digite o valor do produto"/>
                     </div>
                     <div>
-                        <button>CADASTRAR</button>
+                        <button>{props.idEditar > 0 ? "Editar" : "Cadastrar"}</button>
                     </div>
                 </fieldset>
             </form>
